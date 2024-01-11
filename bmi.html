@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .back-ground {
+        position: absolute;
+        background-image: url(/img/back\ ground1.jfif);
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+      }
+      .header h2 {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding: 10px;
+      }
+      .first-p p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+      }
+      .b-body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .fisrt-input{
+        padding: 10px;
+        margin-left: 50px;
+        border-radius: 30px;
+        box-shadow: -77px 30px 105px 23px #9bccd4;
+        background-color: #b09bd49f;
+        color: black;
+        margin-top: 30px;
+      }
+      .secound-input{
+        padding: 10px;
+        margin-right: 50px;
+        border-radius: 30px;
+        box-shadow: 77px 30px 105px 23px #9bc8d4;
+        background-color: #b09bd49f;
+        color: black;
+        margin-top: 30px;
+      }
+      .div-button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .animated-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #4caf9e;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+        }
+
+        .animated-button::before {
+        content: "";
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: -100%;
+        transition: left 0.4s;
+        }
+
+        .animated-button:hover::before {
+        left: 0;
+        }
+
+        .animated-button:hover {
+        background-color: #45a049;
+        }
+        .secound-button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+        .button{
+            background-color: blueviolet;
+            padding: 5px;
+            margin: 5px;
+            color: ivory;
+            border: 3px solid rgba(102, 51, 153, 0.605);
+            border-radius: 10px;
+        }
+        .side-nav{
+            position: fixed;
+            width: 400px;
+            height: 100%;
+            background-color: rgb(160, 80, 176);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            top: 0;
+            right: -400px;
+            color: aliceblue;
+            transition: 1s;
+        }
+        .side-nav .close{
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+        }
+        .picture {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            
+        }
+        .picture img{
+            border-radius: 20px;
+            width: 30%;
+        }
+        ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+       
+
+
+    </style>
+  </head>
+  <body class="body">
+    <div class="back-ground">
+        <nav class="nav">
+            <ul>
+                <button onclick="showSideNav()" class="button">side nav</button>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+              </ul>
+        </nav>
+      <div class="header">
+        <h2> چیست؟BMI</h2>
+        <div class="first-p">
+          <p>
+            شاخص توده بدنی BMI یک ابزار غربالگری پزشکی است که نسبت قد شما به وزن
+            بدنتان را اندازه گیری می کند تا میزان چربی بدن را تخمین بزند.
+          </p>
+        </div>
+      </div>
+      <div class="picture">
+        <img src="/img/fat women.jpg" alt="">
+      </div>
+      <div class="b-body">
+        <input class="fisrt-input" placeholder="قد" id="height"></input>
+        <input class="secound-input" placeholder="وزن" id="weight"></input>
+      </div>
+      <div class="div-button">
+        <button class="animated-button" onclick="CalcBmi()">محاسبه</button>
+        <div class="">bmi = <span id="bmi">...</span>
+        <p id="bmiText"></p>
+        </div>
+      </div>
+      <div class="secound-button">
+        
+        <div class="side-nav" id="sideNav">
+            <span class="close" onclick="hideSideNav()">X</span>
+        </div>
+      </div>
+
+
+
+    </div>
+    <script>
+        function CalcBmi(){
+            let weight=Number(document.getElementById('weight').value);
+            let height=Number(document.getElementById('height').value);
+            let bmi=Math.round(weight/(height**2));
+            document.getElementById('bmi').innerText=bmi
+            if(bmi<20){
+                document.getElementById('bmi').innerText="شما کمبود ئزن دارید و دارید میمیرید"
+            }else if(bmi>20 &&bmi<30 ){
+                document.getElementById('bmi').innerText='وزن شما بدککیی نیست و نمیمیری'
+            }
+            else{
+                document.getElementById('bmi').innerText='خیلی چاقالی خیکی خر'
+            }
+        }
+
+        function showSideNav(){
+            document.getElementById('sideNav').style.right='0'
+        }
+        function hideSideNav(){
+            document.getElementById('sideNav').style.right='-400px'
+        }
+    </script>
+  </body>
+</html>

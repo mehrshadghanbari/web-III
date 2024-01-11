@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        padding: 30px;
+      ">
+      <span id="hour"></span>
+      :
+      <span id="min"></span>
+      :
+      <span id="sec"></span>
+    </div>
+    <script>
+      let s = 0;
+      let m = 0;
+      let h = 0;
+      function counter() {
+        document.getElementById("sec").innerHTML = s;
+        document.getElementById("min").innerHTML = m;
+        document.getElementById("hour").innerHTML = h;
+        s++;
+        if (s >= 60) {
+          s = 0;
+          m++;
+        }
+        if (m >= 60) {
+          m = 0;
+          h++;
+        }
+      }
+      setInterval(counter, 1000);
+    </script>
+  </body>
+</html>
